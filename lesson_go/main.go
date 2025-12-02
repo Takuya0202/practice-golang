@@ -7,4 +7,5 @@ func main() {
 	lessonIota()
 	lessonIf()
 	lessonLoop()
+	lessonArrayAndSlice()
 }
