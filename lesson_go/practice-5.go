@@ -47,4 +47,47 @@ func lessonArrayAndSlice() {
 	}
 	fmt.Println(doubleSlice)
 	fmt.Println(doubleSlice[0][0])
+
+	// スライスの追加にはappendを使用
+	doubleSlice = append(doubleSlice, []int{7, 8, 9, 10})
+	fmt.Println(doubleSlice)
+
+	// スライスの長さを取得
+	fmt.Println("スライスの長さ(len)", len(doubleSlice))
+	// スライスの容量を取得
+	fmt.Println("スライスの容量(cap)", cap(doubleSlice))
+
+	// 容量100,長さ0のスライス。容量を指定しておくことで、メモリの無駄を削減(アロケーションを抑える)
+	newSlice := make([]int, 0, 100)
+	fmt.Println(len(newSlice), cap(newSlice))
+
+	// 1 ~ 100追加
+	for i := 0; i < 100; i++ {
+		newSlice = append(newSlice, i+1)
+	}
+	fmt.Println(newSlice)
+	// スライスは添字でアクセスできる
+	fmt.Println(newSlice[0:10]) // インデックス番号の0から9番目まで
+
+	// スライスの削除。同じ型のスライスを作成して、詰める
+	newSlice2 := make([]int, 0, len(newSlice)/2)
+	for i := 0; i < len(newSlice); i++ {
+		if i%2 != 0 {
+			newSlice2 = append(newSlice2, newSlice[i])
+		}
+	}
+	fmt.Println(newSlice2)
+
+	// appendで削除
+	n := 50
+	// インデックス番号nの要素を削除
+	// n-1番目の要素からn+1から最後までの要素を追加。スライスをそのまま渡すとエラーなので、...で展開
+	// appendの第二引数はelem ...Typeとなっていて、スライスに対し、...とすることで数値を１つ１つ展開して渡すことができる。
+	newSlice = append(newSlice[:n], newSlice[n+1:]...)
+	fmt.Println(newSlice)
+
+	// copyで削除。
+	m := 25
+	newSlice = newSlice[:m+copy(newSlice[m:], newSlice[m+1:])]
+	fmt.Println(newSlice)
 }
