@@ -86,8 +86,15 @@ func lessonArrayAndSlice() {
 	newSlice = append(newSlice[:n], newSlice[n+1:]...)
 	fmt.Println(newSlice)
 
+	// copy関数。copy元スライスとcopy先スライスを使用する
+	// copy元スライスにはコピー分の長さが必要であり、copy関数の戻り値はcopyした要素数を返す。
+	copySource := []int{1, 2, 3}
+	copyTraget := make([]int, len(copySource))
+	copyNum := copy(copyTraget, copySource)
+	fmt.Println(copyNum)
 	// copyで削除。
 	m := 25
+	// copy(newSlice[m:], newSlice[m+1:])でm+1番目から最後までの要素をm番目以降にコピー。
 	newSlice = newSlice[:m+copy(newSlice[m:], newSlice[m+1:])]
 	fmt.Println(newSlice)
 }

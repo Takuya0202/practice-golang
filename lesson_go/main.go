@@ -8,5 +8,6 @@ func main() {
 	lessonIf()
 	lessonLoop()
 	lessonArrayAndSlice()
-	lessonStandardInput()
+	// lessonStandardInput()
+	lessonString()
 }

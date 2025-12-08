@@ -26,4 +26,17 @@ func lessonLoop() {
 		}
 	}
 
+	// スライスループ。goにはfor in やforeachなどはない。
+	slice := []int{1, 2, 3, 4, 5}
+	for i, v := range slice {
+		fmt.Println(i, v)
+	}
+	// インデックス番号のみを取得
+	for i := range slice {
+		fmt.Println(i)
+	}
+	// 値のみを取得
+	for _, v := range slice {
+		fmt.Println(v)
+	}
 }
