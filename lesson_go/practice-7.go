@@ -41,4 +41,17 @@ func lessonString() {
 	b[0] = 'h'
 	s = string(b) // 再代入する形でイミュータブルなstringを書き換えることができる。
 	fmt.Println(s)
+
+	// rune型にするとunicodeで扱える
+	s2 := "Hello, 世界"
+	r := []rune(s2)
+	fmt.Println(r[0])
+	r[0] = 'h'
+	fmt.Println(string(r))
+
+	content := `
+バッククォート使うことで
+複数行の文字列を扱える
+	`
+	fmt.Println(content)
 }

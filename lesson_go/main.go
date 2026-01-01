@@ -4,10 +4,12 @@ package main
 // main関数はプログラムのエントリーポイントとなる関数で、引数、戻り値もない。
 func main() {
 	lessonVariable()
-	lessonIota()
-	lessonIf()
-	lessonLoop()
-	lessonArrayAndSlice()
+	// lessonIota()
+	//lessonIf()
+	//lessonLoop()
+	//lessonArrayAndSlice()
 	// lessonStandardInput()
 	lessonString()
+	lessonMap()
+	lessonType()
 }
