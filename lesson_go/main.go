@@ -12,4 +12,6 @@ func main() {
 	lessonString()
 	lessonMap()
 	lessonType()
+	lessonStruct()
+	lessonMethod()
 }
