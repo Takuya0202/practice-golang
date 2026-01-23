@@ -14,4 +14,5 @@ func main() {
 	lessonType()
 	lessonStruct()
 	lessonMethod()
+	lessonPointer()
 }
