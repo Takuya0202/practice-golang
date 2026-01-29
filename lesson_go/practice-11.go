@@ -7,6 +7,8 @@ type Person struct {
 	Age  int
 }
 
+type Valur int
+
 func lessonPointer() {
 	// ポインタは&を使って参照し、*で実態を参照できる
 	v := 1
@@ -29,7 +31,26 @@ func lessonPointer() {
 	person.Name = "佐藤"
 	person.Age = 30
 	fmt.Println(person)
+	person.greet()
 
-	// ポインタのメソッド
+	pv := Value(1)
+	pv.add(2)
+	fmt.Println(pv)
 
+	pv.notAdd(3)
+	fmt.Println(pv)
+}
+
+// ポインタメソッド
+func (p *Person) greet() {
+	fmt.Println("Hello, my name is", p.Name)
+}
+
+func (v *Value) add(n Value) {
+	*v += n
+}
+
+// これはレシーバがポインタではないのでコピーされるため、値が変わらない。
+func (v Value) notAdd(n Value) {
+	v += n
 }

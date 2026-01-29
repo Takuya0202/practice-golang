@@ -15,4 +15,5 @@ func main() {
 	lessonStruct()
 	lessonMethod()
 	lessonPointer()
+	lessonInterface()
 }
