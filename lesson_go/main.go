@@ -16,4 +16,9 @@ func main() {
 	lessonMethod()
 	lessonPointer()
 	lessonInterface()
+	lessonInterface2()
+	// lessonDefer()
+	lessonGoroutine()
+	// lessonGoroutine2()
+	lessonGoroutine3()
 }

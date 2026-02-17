@@ -28,11 +28,11 @@ const (
 	Kiwi
 )
 
-const (
-	Dog Animal = iota
-	Cat
-	Bird
-)
+// const (
+// 	Dog Animal = iota
+// 	Cat
+// 	Bird
+// )
 
 func lessonIota() {
 	var fruit Fruit = Peach
