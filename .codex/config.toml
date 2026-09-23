@@ -1,0 +1,3 @@
+# Codex のサンドボックスは ~/.cache に書き込めないため、Go のビルドキャッシュを /tmp に置く
+[shell_environment_policy]
+set = { GOCACHE = "/tmp/go-build-practice-golang" }

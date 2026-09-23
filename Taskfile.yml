@@ -1,0 +1,65 @@
+version: '3'
+
+vars:
+  # AI ツールの切り替え（例：task ask AI=codex）
+  AI: claude
+
+tasks:
+  # ---- 役の起動 ----
+
+  ask:
+    desc: 質問役を起動する（例：task ask / task ask AI=codex）
+    cmds:
+      - task: _role
+        vars: { ROLE: go-ask }
+
+  drill:
+    desc: 出題役を起動する（例：task drill -- ch03 スライス）
+    cmds:
+      - task: _role
+        vars: { ROLE: go-drill }
+
+  review:
+    desc: レビュー役を起動する（例：task review -- exercises/ch03）
+    cmds:
+      - task: _role
+        vars: { ROLE: go-review }
+
+  _role:
+    internal: true
+    interactive: true
+    cmds:
+      - '{{if eq .AI "codex"}}codex ''${{.ROLE}} {{.CLI_ARGS}}''{{else}}claude "/{{.ROLE}} {{.CLI_ARGS}}"{{end}}'
+
+  # ---- Go の操作 ----
+
+  run:
+    desc: practice のサンプルを実行する（例：task run -- ch03/01_hello）
+    preconditions:
+      - sh: test -n "{{.CLI_ARGS}}"
+        msg: '実行するディレクトリを指定してください（例：task run -- ch03/01_hello）'
+    cmds:
+      - go run ./practice/{{.CLI_ARGS}}
+
+  test:
+    desc: 練習問題のテストを実行する（例：task test / task test -- ch03/01_slice_append）
+    cmds:
+      - go test ./exercises/{{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}...{{end}}
+
+  check:
+    desc: go vet と gofmt でチェックする（gofmt の差分があれば失敗）
+    silent: true
+    cmds:
+      - |
+        if [ -n "$(go list ./... 2>/dev/null)" ]; then
+          go vet ./...
+        else
+          echo "チェックするパッケージがまだありません"
+        fi
+      - |
+        files=$(gofmt -l practice exercises)
+        if [ -n "$files" ]; then
+          echo "gofmt が必要なファイル:"
+          echo "$files"
+          exit 1
+        fi
