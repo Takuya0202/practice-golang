@@ -36,4 +36,7 @@ func main() {
 	// 型変換ならチェックを素通りできてしまう
 	badName := Name("")
 	fmt.Printf("%q\n", badName) // ""
+
+	// 定数
+	const x = 1 // 定数は未使用でもコンパイルエラーにはならない
 }
